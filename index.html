@@ -1,1 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Rock | Study Abroad Fair 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #e8192c;
+  --red-dark: #c0101f;
+  --navy: #1a2b6b;
+  --navy-dark: #0f1a45;
+  --white: #ffffff;
+  --off-white: #f4f6fc;
+  --light-gray: #eef1f8;
+  --text: #1a2b6b;
+  --text-muted: #6b7a9e;
+  --gold: #f5c842;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Archivo', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; cursor: none; }
 
+/* CURSOR */
+.cursor { width: 14px; height: 14px; background: var(--red); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; mix-blend-mode: multiply; }
+.cursor-ring { width: 40px; height: 40px; border: 2px solid var(--navy); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.5; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 0 40px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: var(--white); border-bottom: 2px solid var(--navy); transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 4px 30px rgba(26,43,107,0.12); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--navy); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; position: relative; padding-bottom: 2px; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--red); transition: width 0.25s; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--red); }
+.nav-btn { background: var(--red) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 6px !important; font-weight: 700 !important; text-transform: uppercase; font-size: 12px !important; letter-spacing: 0.5px; }
+.nav-btn::after { display: none !important; }
+.nav-btn:hover { background: var(--red-dark) !important; }
+
+/* HERO */
+.hero { margin-top: 68px; background: var(--navy); min-height: calc(100vh - 68px); position: relative; overflow: hidden; display: flex; align-items: center; }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridMove 20s linear infinite; }
+@keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 60px 60px; } }
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+.blob1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(232,25,44,0.3), transparent 70%); top: -150px; right: -100px; animation: blobF 8s ease-in-out infinite; }
+.blob2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,200,66,0.15), transparent 70%); bottom: -100px; left: 100px; animation: blobF 10s ease-in-out infinite reverse; }
+@keyframes blobF { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08) translate(20px,-15px); } }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; margin-bottom: 24px; animation: slideIn 0.6s ease both; }
+.tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 1.2s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+
+.hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 8vw, 110px); color: var(--white); line-height: 0.92; letter-spacing: 1px; margin-bottom: 24px; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+.hero h1 .hl { color: var(--red); display: block; }
+.hero h1 .ol { -webkit-text-stroke: 2px rgba(255,255,255,0.35); color: transparent; display: block; }
+@keyframes upIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+.hero-sub { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.7; margin-bottom: 36px; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
+.btn-p { background: var(--red); color: var(--white); border: none; padding: 15px 32px; border-radius: 8px; font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+.btn-p:hover { background: var(--red-dark); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(232,25,44,0.4); }
+.btn-o { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.35); padding: 13px 30px; border-radius: 8px; font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+.btn-o:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+.hero-stats { display: flex; gap: 32px; margin-top: 48px; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.65s both; flex-wrap: wrap; }
+.hstat { border-left: 3px solid var(--red); padding-left: 16px; }
+.hstat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--white); line-height: 1; }
+.hstat-lbl { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+/* Hero right - floating cards */
+.hero-right { position: relative; height: 500px; animation: upIn 1s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
+.center-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 180px; height: 180px; background: var(--red); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: pulseBadge 3s ease-in-out infinite; box-shadow: 0 0 0 20px rgba(232,25,44,0.15), 0 0 0 40px rgba(232,25,44,0.07); }
+@keyframes pulseBadge { 0%,100% { box-shadow: 0 0 0 20px rgba(232,25,44,0.15),0 0 0 40px rgba(232,25,44,0.07); } 50% { box-shadow: 0 0 0 30px rgba(232,25,44,0.1),0 0 0 60px rgba(232,25,44,0.04); } }
+.cb-big { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: white; line-height: 1; }
+.cb-sm { font-size: 11px; color: rgba(255,255,255,0.8); letter-spacing: 1.5px; text-transform: uppercase; }
+.fc { position: absolute; background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 18px 22px; color: var(--white); animation: cardF var(--d,6s) ease-in-out infinite; animation-delay: var(--dl,0s); }
+@keyframes cardF { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-12px) rotate(var(--r,0deg)); } }
+.fc1 { top: 20px; left: 10px; --d:7s; --dl:0s; --r:-3deg; }
+.fc2 { top: 60px; right: 0; --d:5s; --dl:1s; --r:3deg; }
+.fc3 { bottom: 80px; left: 30px; --d:8s; --dl:0.5s; --r:-2deg; }
+.fc4 { bottom: 20px; right: 20px; --d:6s; --dl:1.5s; --r:2deg; }
+.fc-flag { font-size: 26px; margin-bottom: 6px; }
+.fc-lbl { font-size: 10px; opacity: 0.55; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.fc-name { font-weight: 700; font-size: 14px; }
+.fc-country { font-size: 11px; opacity: 0.5; margin-top: 2px; }
+
+/* TICKER */
+.ticker-wrap { background: var(--red); padding: 12px 0; overflow: hidden; white-space: nowrap; border-top: 3px solid var(--red-dark); border-bottom: 3px solid var(--red-dark); }
+.ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+.ticker-track span { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--white); letter-spacing: 1px; padding: 0 28px; }
+.ticker-track .tdot { color: var(--gold); padding: 0 8px; }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* COMMON SECTION */
+section { padding: 100px 40px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.sec-eye { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.sec-eye::before { content: ''; width: 30px; height: 3px; background: var(--red); border-radius: 2px; }
+.sec-title { font-family: 'Archivo Black', sans-serif; font-size: clamp(30px, 4vw, 50px); color: var(--navy); line-height: 1.1; margin-bottom: 14px; }
+.sec-sub { color: var(--text-muted); font-size: 16px; line-height: 1.7; max-width: 540px; }
+
+/* SCHEDULE */
+#schedule { background: var(--off-white); }
+.sch-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+.sch-season { display: flex; align-items: center; gap: 8px; color: var(--red); font-weight: 700; font-size: 13px; }
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.event-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(26,43,107,0.08); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, border-color 0.2s; cursor: pointer; border: 2px solid transparent; }
+.event-card:hover, .event-card.sel { transform: translateY(-10px) scale(1.02); box-shadow: 0 24px 64px rgba(26,43,107,0.2); border-color: var(--red); }
+.event-card.sel .etop { background: var(--red); }
+.etop { background: var(--navy); padding: 28px 28px 20px; transition: background 0.3s; }
+.edate-row { display: flex; justify-content: space-between; align-items: flex-start; }
+.emon { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.eday { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: var(--white); line-height: 1; }
+.etime { background: rgba(255,255,255,0.15); color: var(--white); font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25); }
+.ebody { padding: 24px 28px 28px; }
+.ecity { font-family: 'Archivo Black', sans-serif; font-size: 26px; color: var(--navy); margin-bottom: 10px; }
+.eaddr { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; display: flex; gap: 8px; }
+.eaddr svg { flex-shrink: 0; margin-top: 2px; color: var(--red); }
+.emapbtn { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--navy); text-decoration: none; border: 2px solid var(--navy); padding: 9px 18px; border-radius: 8px; letter-spacing: 0.5px; transition: all 0.2s; text-transform: uppercase; }
+.emapbtn:hover { background: var(--navy); color: var(--white); }
+
+/* INSTITUTIONS */
+#institutions { background: var(--white); }
+.inst-hd { text-align: center; margin-bottom: 56px; }
+.inst-hd .sec-eye { justify-content: center; }
+.inst-hd .sec-eye::before { display: none; }
+.inst-hd .sec-sub { margin: 0 auto; }
+.schools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.school-card { background: var(--light-gray); border: 2px solid transparent; border-radius: 14px; padding: 22px 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1); cursor: default; }
+.school-card:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-6px) scale(1.05); box-shadow: 0 14px 32px rgba(26,43,107,0.22); }
+.school-card:hover .sc-abbr { background: var(--red); }
+.school-card:hover .sc-name { color: var(--white); }
+.school-card:hover .sc-ctry { color: rgba(255,255,255,0.55); }
+.sc-abbr { width: 52px; height: 52px; background: var(--navy); color: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Archivo Black', sans-serif; font-size: 13px; letter-spacing: 0.5px; transition: background 0.25s; }
+.sc-name { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.25s; }
+.sc-ctry { font-size: 11px; color: var(--text-muted); transition: color 0.25s; }
+.more-schs { text-align: center; color: var(--text-muted); font-size: 14px; font-style: italic; padding: 18px; background: var(--light-gray); border-radius: 12px; }
+.more-schs strong { color: var(--navy); font-style: normal; }
+
+/* MAP */
+#locations { background: var(--off-white); }
+.map-layout { display: grid; grid-template-columns: 280px 1fr; gap: 0; margin-top: 48px; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 48px rgba(26,43,107,0.14); }
+.map-sidebar { background: var(--navy); }
+.msi { padding: 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.07); cursor: pointer; transition: background 0.2s; position: relative; }
+.msi:hover { background: rgba(255,255,255,0.05); }
+.msi.active { background: rgba(255,255,255,0.08); }
+.msi.active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--red); border-radius: 0 4px 4px 0; }
+.msi-date { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.msi-city { font-family: 'Archivo Black', sans-serif; font-size: 20px; color: var(--white); margin-bottom: 4px; }
+.msi-venue { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+.map-frames { height: 480px; position: relative; }
+.map-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+.map-frame.active { opacity: 1; pointer-events: all; }
+
+/* REGISTER */
+#register { background: var(--white); }
+.reg-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 48px; }
+.reg-checks { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+.reg-checks li { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--text-muted); }
+.chk-ico { width: 32px; height: 32px; background: rgba(232,25,44,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--red); font-weight: 700; }
+.reg-card { background: var(--navy); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(26,43,107,0.25); position: relative; overflow: hidden; }
+.reg-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(232,25,44,0.25), transparent 70%); pointer-events: none; }
+.rc-title { font-family: 'Archivo Black', sans-serif; font-size: 22px; color: var(--white); margin-bottom: 6px; }
+.rc-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+.form-group input, .form-group select { width: 100%; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 13px 16px; font-family: 'Archivo', sans-serif; font-size: 14px; color: var(--white); outline: none; transition: border-color 0.2s, background 0.2s; appearance: none; }
+.form-group input::placeholder { color: rgba(255,255,255,0.28); }
+.form-group input:focus, .form-group select:focus { border-color: var(--red); background: rgba(255,255,255,0.12); }
+.form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-color: rgba(255,255,255,0.08); padding-right: 40px; cursor: pointer; }
+.form-group select option { background: #0f1a45; color: white; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.phone-wrap { position: relative; }
+.phone-px { position: absolute; left: 0; top: 0; bottom: 0; width: 56px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 600; border-right: 1px solid rgba(255,255,255,0.14); }
+.phone-wrap input { padding-left: 68px; }
+.wa-hint { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 6px; display: flex; align-items: center; gap: 5px; }
+.wa-dot-green { color: #25D366; }
+.submit-btn { width: 100%; background: var(--red); color: white; border: none; border-radius: 12px; padding: 16px; font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; position: relative; overflow: hidden; }
+.submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transition: left 0.5s; }
+.submit-btn:hover::before { left: 100%; }
+.submit-btn:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,25,44,0.4); }
+.submit-btn:disabled { opacity: 0.6; pointer-events: none; }
+.spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* SUCCESS */
+.success-panel { display: none; text-align: center; padding: 40px 16px; }
+.succ-icon { width: 80px; height: 80px; background: rgba(37,211,102,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 36px; border: 2px solid rgba(37,211,102,0.4); }
+.success-panel h3 { font-family: 'Archivo Black', sans-serif; font-size: 24px; color: white; margin-bottom: 10px; }
+.success-panel p { color: rgba(255,255,255,0.55); line-height: 1.6; font-size: 14px; }
+.wa-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 24px; transition: all 0.2s; }
+.wa-btn:hover { background: #1ea853; transform: scale(1.04); }
+
+/* FOOTER */
+footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 3px solid var(--red); }
+.foot-links { display: flex; gap: 28px; list-style: none; }
+.foot-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+.foot-links a:hover { color: rgba(255,255,255,0.85); }
+.foot-copy { color: rgba(255,255,255,0.28); font-size: 12px; }
+.foot-copy span { color: var(--red); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.rd1 { transition-delay: 0.1s; } .rd2 { transition-delay: 0.2s; } .rd3 { transition-delay: 0.3s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .events-grid { grid-template-columns: 1fr; }
+  .map-layout { grid-template-columns: 1fr; }
+  .map-sidebar { display: flex; overflow-x: auto; }
+  .msi { min-width: 190px; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.07); }
+  .reg-layout { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:42px;width:auto;display:block;">
+  <ul class="nav-links">
+    <li><a href="#schedule">Destinations</a></li>
+    <li><a href="#institutions">Universities</a></li>
+    <li><a href="#locations">Schedule</a></li>
+    <li><a href="#register">Scholarships</a></li>
+    <li><a href="#register">FAQ</a></li>
+    <li><a href="#register" class="nav-btn">Register Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><div class="tag-dot"></div> The Future is Global</div>
+      <h1>Study<br><span class="hl">Abroad</span><span class="ol">Fair</span></h1>
+      <p class="hero-sub">Connect with prestigious international institutions, explore scholarship opportunities, and start your global education journey at Nigeria's premier academic event.</p>
+      <div class="hero-btns">
+        <a href="#register" class="btn-p">Register Now <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        <a href="#institutions" class="btn-o">View Institutions</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num">16+</div><div class="hstat-lbl">Universities</div></div>
+        <div class="hstat"><div class="hstat-num">3</div><div class="hstat-lbl">Cities</div></div>
+        <div class="hstat"><div class="hstat-num">Free</div><div class="hstat-lbl">Entry</div></div>
+        <div class="hstat"><div class="hstat-num">May</div><div class="hstat-lbl">2026</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="center-badge"><div class="cb-big">2026</div><div class="cb-sm">Study Abroad Fair</div></div>
+      <div class="fc fc1"><div class="fc-flag">🇬🇧</div><div class="fc-lbl">United Kingdom</div><div class="fc-name">BPP University</div></div>
+      <div class="fc fc2"><div class="fc-flag">🇨🇦</div><div class="fc-lbl">Canada</div><div class="fc-name">Durham College</div></div>
+      <div class="fc fc3"><div class="fc-flag">🇲🇾</div><div class="fc-lbl">Malaysia</div><div class="fc-name">NILAI University</div></div>
+      <div class="fc fc4"><div class="fc-flag">🇦🇺</div><div class="fc-lbl">Australia</div><div class="fc-name">WAIFS Australia</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span>UK</span><span class="tdot">★</span><span>Canada</span><span class="tdot">★</span><span>Australia</span><span class="tdot">★</span><span>Malaysia</span><span class="tdot">★</span><span>Spain</span><span class="tdot">★</span><span>Thailand</span><span class="tdot">★</span><span>Ireland</span><span class="tdot">★</span><span>Albania</span><span class="tdot">★</span><span>Ibadan · May 14</span><span class="tdot">★</span><span>Lagos · May 16</span><span class="tdot">★</span><span>Benin City · May 20</span><span class="tdot">★</span>
+    <span>UK</span><span class="tdot">★</span><span>Canada</span><span class="tdot">★</span><span>Australia</span><span class="tdot">★</span><span>Malaysia</span><span class="tdot">★</span><span>Spain</span><span class="tdot">★</span><span>Thailand</span><span class="tdot">★</span><span>Ireland</span><span class="tdot">★</span><span>Albania</span><span class="tdot">★</span><span>Ibadan · May 14</span><span class="tdot">★</span><span>Lagos · May 16</span><span class="tdot">★</span><span>Benin City · May 20</span><span class="tdot">★</span>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <div class="sch-hd reveal">
+      <div>
+        <div class="sec-eye">Event Schedule</div>
+        <h2 class="sec-title">Mark Your Calendar</h2>
+        <p class="sec-sub">The tour spans three major Nigerian cities. Pick the venue closest to you and register free.</p>
+      </div>
+      <div class="sch-season"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-width="2" stroke-linecap="round"/></svg> May 2026 Season</div>
+    </div>
+    <div class="events-grid">
+      <div class="event-card reveal rd1" onclick="pickEvent('ibadan',this)">
+        <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">14</div></div><div class="etime">11:00 AM</div></div></div>
+        <div class="ebody">
+          <div class="ecity">Ibadan</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Aganga Hall, International Conference Centre, UI, Ibadan</div>
+          <a class="emapbtn" href="#locations" onclick="switchMap(0)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
+        </div>
+      </div>
+      <div class="event-card reveal rd2" onclick="pickEvent('lagos',this)">
+        <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">16</div></div><div class="etime">11:00 AM</div></div></div>
+        <div class="ebody">
+          <div class="ecity">Lagos</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Chemline House, 7 Obasa Road, Off Oba Akran Avenue, Ikeja</div>
+          <a class="emapbtn" href="#locations" onclick="switchMap(1)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
+        </div>
+      </div>
+      <div class="event-card reveal rd3" onclick="pickEvent('benin',this)">
+        <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">20</div></div><div class="etime">11:00 AM</div></div></div>
+        <div class="ebody">
+          <div class="ecity">Benin City</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Constantial Hotel and Suites, 24-26 Airport Road, Opposite Benin Airport Exit Gate</div>
+          <a class="emapbtn" href="#locations" onclick="switchMap(2)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTIONS -->
+<section id="institutions">
+  <div class="container">
+    <div class="inst-hd reveal">
+      <div class="sec-eye">Featured Institutions</div>
+      <h2 class="sec-title">Meet the Schools</h2>
+      <p class="sec-sub">Meet representatives from world-class universities across Thailand, UK, Canada, Australia, Spain, and more.</p>
+    </div>
+    <div class="schools-grid reveal">
+      <div class="school-card"><div class="sc-abbr">SIU</div><div class="sc-name">SIU</div><div class="sc-ctry">🇹🇭 Thailand</div></div>
+      <div class="school-card"><div class="sc-abbr">BPP</div><div class="sc-name">BPP University</div><div class="sc-ctry">🇬🇧 UK</div></div>
+      <div class="school-card"><div class="sc-abbr">YSJ</div><div class="sc-name">YSJ University</div><div class="sc-ctry">🇬🇧 UK</div></div>
+      <div class="school-card"><div class="sc-abbr">SC</div><div class="sc-name">Saskatchewan Colleges</div><div class="sc-ctry">🇨🇦 Canada</div></div>
+      <div class="school-card"><div class="sc-abbr">DC</div><div class="sc-name">Durham College</div><div class="sc-ctry">🇨🇦 Canada</div></div>
+      <div class="school-card"><div class="sc-abbr">WA</div><div class="sc-name">WAIFS Australia</div><div class="sc-ctry">🇦🇺 Australia</div></div>
+      <div class="school-card"><div class="sc-abbr">UP</div><div class="sc-name">UP Education</div><div class="sc-ctry">🇳🇿 New Zealand</div></div>
+      <div class="school-card"><div class="sc-abbr">ES</div><div class="sc-name">ENAI Spain</div><div class="sc-ctry">🇪🇸 Spain</div></div>
+      <div class="school-card"><div class="sc-abbr">UC</div><div class="sc-name">Cumbria</div><div class="sc-ctry">🇬🇧 UK</div></div>
+      <div class="school-card"><div class="sc-abbr">NU</div><div class="sc-name">NILAI University</div><div class="sc-ctry">🇲🇾 Malaysia</div></div>
+      <div class="school-card"><div class="sc-abbr">WBU</div><div class="sc-name">WBU</div><div class="sc-ctry">🇦🇱 Albania</div></div>
+      <div class="school-card"><div class="sc-abbr">OBS</div><div class="sc-name">OBS School</div><div class="sc-ctry">🇪🇸 Spain</div></div>
+    </div>
+    <p class="more-schs reveal">And many more: <strong>Wittenberg</strong>, <strong>Wilfrid Laurier University</strong>, <strong>Thompson Rivers</strong>, <strong>Holmes Institute Dublin...</strong></p>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="locations">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-eye">Location &amp; Directions</div>
+      <h2 class="sec-title">Find Your Venue</h2>
+      <p class="sec-sub">Click a city below to see the exact venue location and plan your trip.</p>
+    </div>
+    <div class="map-layout reveal">
+      <div class="map-sidebar">
+        <div class="msi active" onclick="switchMap(0)" id="msi0"><div class="msi-date">May 14</div><div class="msi-city">Ibadan</div><div class="msi-venue">UI Conference Centre</div></div>
+        <div class="msi" onclick="switchMap(1)" id="msi1"><div class="msi-date">May 16</div><div class="msi-city">Lagos</div><div class="msi-venue">Ikeja District</div></div>
+        <div class="msi" onclick="switchMap(2)" id="msi2"><div class="msi-date">May 20</div><div class="msi-city">Benin City</div><div class="msi-venue">Airport Road Area</div></div>
+      </div>
+      <div class="map-frames" id="map-frames">
+        <iframe class="map-frame active" id="mf0" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf1" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf2" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section id="register" style="background:var(--off-white)">
+  <div class="container">
+    <div class="reg-layout">
+      <div class="reveal">
+        <div class="sec-eye">Free Registration</div>
+        <h2 class="sec-title">Secure Your Spot</h2>
+        <p class="sec-sub">Entry is free but registration is mandatory for institutional consultations. Fill in your details and receive a WhatsApp confirmation instantly.</p>
+        <ul class="reg-checks">
+          <li><div class="chk-ico">✓</div> Meet representatives face-to-face</li>
+          <li><div class="chk-ico">✓</div> Get scholarship information directly</li>
+          <li><div class="chk-ico">✓</div> WhatsApp confirmation sent immediately</li>
+          <li><div class="chk-ico">✓</div> Completely free — no ticket required</li>
+          <li><div class="chk-ico">✓</div> Multiple universities, one event</li>
+        </ul>
+      </div>
+      <div class="reg-card reveal rd1">
+        <div id="form-panel">
+          <div class="rc-title">Complete Registration</div>
+          <div class="rc-sub">By registering, you agree to receive event updates and newsletters.</div>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" id="fname" placeholder="John" required></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" id="lname" placeholder="Doe" required></div>
+          </div>
+          <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="john@example.com" required></div>
+          <div class="form-group">
+            <label>WhatsApp Number *</label>
+            <div class="phone-wrap"><div class="phone-px">+234</div><input type="tel" id="phone" placeholder="080 1234 5678" required></div>
+            <div class="wa-hint"><span class="wa-dot-green">●</span> Confirmation sent to this number via WhatsApp</div>
+          </div>
+          <div class="form-group">
+            <label>Preferred Venue *</label>
+            <select id="venue" required onchange="syncCards()">
+              <option value="">Select Destination</option>
+              <option value="Ibadan - May 14">Ibadan — May 14</option>
+              <option value="Lagos - May 16">Lagos — May 16</option>
+              <option value="Benin City - May 20">Benin City — May 20</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Study Level</label><select id="level"><option value="">Select...</option><option>Undergraduate</option><option>Postgraduate</option><option>Foundation</option><option>Short Courses</option></select></div>
+            <div class="form-group"><label>Top Destination</label><select id="dest"><option value="">Select...</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Malaysia</option><option>Spain</option><option>Thailand</option><option>Ireland</option><option>Multiple / Undecided</option></select></div>
+          </div>
+          <button class="submit-btn" id="sbtn" onclick="submitForm()">
+            <div class="spinner" id="spinner"></div>
+            <span id="btn-text">Complete Registration ➜</span>
+          </button>
+        </div>
+        <div class="success-panel" id="success-panel">
+          <div class="succ-icon">✓</div>
+          <h3>You're Registered!</h3>
+          <p>Your spot is confirmed. A WhatsApp message is heading your way with all event details. We cannot wait to see you!</p>
+          <a id="wa-btn" href="#" class="wa-btn" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.12 1.532 5.849L.057 23.5l5.78-1.516A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.659-.502-5.192-1.378l-.371-.22-3.433.9.921-3.357-.242-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Open WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:36px;width:auto;display:block;">
+  <ul class="foot-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">Partners</a></li>
+  </ul>
+  <div class="foot-copy">© 2026 <span>White Rock</span> Academic System. All rights reserved.</div>
+</footer>
+
+<script>
+// CONFIG
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbtpemuSwA6gGISAnmZh5KHtkAWsXesCCSiHdLlqTCBTaCbndKUrXeNsCJXOwmWVrI/exec';
+const ORG_WA = '2348000000000'; // Replace with your WhatsApp number
+
+// Load maps via Apps Script proxy URLs
+// Each iframe src points to Apps Script which redirects to the real Maps embed URL
+// This keeps the API key off the HTML entirely
+// Maps — fetched from Apps Script so the API key never appears in this file
+fetch(APPS_SCRIPT_URL + '?action=maps')
+  .then(r => r.json())
+  .then(data => {
+    if (data.maps) {
+      data.maps.forEach((url, i) => {
+        document.getElementById('mf' + i).src = url;
+      });
+    }
+  })
+  .catch(err => console.warn('Map load failed:', err));
+
+// Cursor
+const $c = document.getElementById('cursor');
+const $r = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){$c.style.left=mx+'px';$c.style.top=my+'px';rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;$r.style.left=rx+'px';$r.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.event-card,.school-card,.msi').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{$c.style.width='24px';$c.style.height='24px';$r.style.width='60px';$r.style.height='60px';});
+  el.addEventListener('mouseleave',()=>{$c.style.width='14px';$c.style.height='14px';$r.style.width='40px';$r.style.height='40px';});
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('main-nav').classList.toggle('scrolled',scrollY>40));
+
+// Reveal on scroll
+const ro = new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// Map
+function switchMap(i){
+  document.querySelectorAll('.map-frame').forEach((f,j)=>f.classList.toggle('active',j===i));
+  document.querySelectorAll('.msi').forEach((s,j)=>s.classList.toggle('active',j===i));
+}
+
+// Event card click
+function pickEvent(city, card){
+  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('sel'));
+  card.classList.add('sel');
+  const sel=document.getElementById('venue');
+  for(const o of sel.options) if(o.value.toLowerCase().includes(city)){sel.value=o.value;break;}
+  setTimeout(()=>document.getElementById('register').scrollIntoView({behavior:'smooth'}),200);
+}
+function syncCards(){
+  const v=document.getElementById('venue').value.toLowerCase();
+  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('sel'));
+  if(v.includes('ibadan')) document.querySelectorAll('.event-card')[0].classList.add('sel');
+  if(v.includes('lagos')) document.querySelectorAll('.event-card')[1].classList.add('sel');
+  if(v.includes('benin')) document.querySelectorAll('.event-card')[2].classList.add('sel');
+}
+
+// Submit
+async function submitForm(){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const venue=document.getElementById('venue').value;
+  const level=document.getElementById('level').value;
+  const dest=document.getElementById('dest').value;
+  if(!fname||!lname||!email||!phone||!venue){alert('Please fill in all required fields.');return;}
+  if(!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email.');return;}
+  const btn=document.getElementById('sbtn');
+  btn.disabled=true;
+  document.getElementById('spinner').style.display='block';
+  document.getElementById('btn-text').textContent='Submitting...';
+  const payload={fname,lname,email,phone:'+234'+phone.replace(/\D/g,''),venue,level,dest,ts:new Date().toISOString()};
+  try{await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(e){console.warn(e);}
+  document.getElementById('form-panel').style.display='none';
+  document.getElementById('success-panel').style.display='block';
+  const vmap={'Ibadan - May 14':'Aganga Hall, International Conference Centre, UI, Ibadan — May 14, 11:00 AM','Lagos - May 16':'Chemline House, 7 Obasa Road, Off Oba Akran Avenue, Ikeja, Lagos — May 16, 11:00 AM','Benin City - May 20':'Constantial Hotel and Suites, Airport Road, Benin City — May 20, 11:00 AM'};
+  const msg=`Hello ${fname}! 🎓\n\nYour registration for the *White Rock Study Abroad Fair 2026* is confirmed!\n\n📍 *Venue:* ${vmap[venue]||venue}\n\nBring a valid ID. 16+ universities will be present. Entry is FREE!\n\nSee you there! 🌍 — White Rock Academic System`;
+  document.getElementById('wa-btn').href=`https://wa.me/${ORG_WA}?text=${encodeURIComponent(msg)}`;
+}
+</script>
+</body>
+</html>
