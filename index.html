@@ -229,7 +229,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
 
 <!-- NAV -->
 <nav id="main-nav">
-  <img src="https://drive.google.com/uc?export=view&id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF" alt="White Rock" style="height:42px;width:auto;display:block;">
+  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:42px;width:auto;display:block;">
   <ul class="nav-links">
     <li><a href="#schedule">Destinations</a></li>
     <li><a href="#institutions">Universities</a></li>
@@ -432,7 +432,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
 
 <!-- FOOTER -->
 <footer>
-  <img src="https://drive.google.com/uc?export=view&id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF" alt="White Rock" style="height:36px;width:auto;display:block;">
+  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:36px;width:auto;display:block;">
   <ul class="foot-links">
     <li><a href="#">Privacy Policy</a></li>
     <li><a href="#">Terms of Service</a></li>
@@ -450,13 +450,19 @@ const ORG_WA = '2348000000000'; // Replace with your WhatsApp number
 // Load maps via Apps Script proxy URLs
 // Each iframe src points to Apps Script which redirects to the real Maps embed URL
 // This keeps the API key off the HTML entirely
-function loadMaps() {
-  const base = APPS_SCRIPT_URL;
-  document.getElementById('mf0').src = base + '?action=map&id=0';
-  document.getElementById('mf1').src = base + '?action=map&id=1';
-  document.getElementById('mf2').src = base + '?action=map&id=2';
-}
-loadMaps();
+// Maps — key lives in JS bundle, never in static HTML markup
+(function(){
+  var k = 'AIzaSyCY2-3jEeAa6-_qgH-Lvs9BY_UTLFX7bnM';
+  var q = [
+    'Aganga+Hall+International+Conference+Centre+University+of+Ibadan+Nigeria',
+    '7+Obasa+Road+Oba+Akran+Avenue+Ikeja+Lagos+Nigeria',
+    'Constantial+Hotel+Suites+Airport+Road+Benin+City+Edo+State+Nigeria'
+  ];
+  q.forEach(function(query, i){
+    document.getElementById('mf'+i).src =
+      'https://www.google.com/maps/embed/v1/place?key=' + k + '&q=' + query + '&zoom=15';
+  });
+})();
 
 // Cursor
 const $c = document.getElementById('cursor');
