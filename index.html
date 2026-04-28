@@ -360,9 +360,9 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
         <div class="msi" onclick="switchMap(2)" id="msi2"><div class="msi-date">May 20</div><div class="msi-city">Benin City</div><div class="msi-venue">Airport Road Area</div></div>
       </div>
       <div class="map-frames" id="map-frames">
-        <iframe class="map-frame active" id="mf0" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <iframe class="map-frame" id="mf1" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <iframe class="map-frame" id="mf2" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame active" id="mf0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126602.57535625761!2d3.8050970138447404!3d7.428632503197955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039937656f5c3a1%3A0x8c1664861947b749!2sInternational%20conference%20center!5e0!3m2!1sen!2sng!4v1777364756189!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.36279400668!2d3.334513174993657!3d6.601757093392126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9187a60a3925%3A0xc3923d060e70226d!2sChemline%20House%20Training%20%26%20Event%20Centre!5e0!3m2!1sen!2sng!4v1777364835583!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15862.12580663578!2d5.593144947670642!3d6.325099798629523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d235e8ba40eb%3A0x6f8e44ad70048901!2sConstantia%20Hotel!5e0!3m2!1sen!2sng!4v1777364996482!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -450,14 +450,7 @@ const ORG_WA = '2348000000000'; // Replace with your WhatsApp number
 // Load maps via Apps Script proxy URLs
 // Each iframe src points to Apps Script which redirects to the real Maps embed URL
 // This keeps the API key off the HTML entirely
-// Maps — each iframe loads an Apps Script page that renders the map
-// The API key never leaves the server. The iframe origin is google.com so Maps allows it.
-(function(){
-  var base = APPS_SCRIPT_URL;
-  document.getElementById('mf0').src = base + '?action=map&id=0';
-  document.getElementById('mf1').src = base + '?action=map&id=1';
-  document.getElementById('mf2').src = base + '?action=map&id=2';
-})();
+
 
 // Cursor
 const $c = document.getElementById('cursor');
