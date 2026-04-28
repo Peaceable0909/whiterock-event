@@ -450,17 +450,14 @@ const ORG_WA = '2348000000000'; // Replace with your WhatsApp number
 // Load maps via Apps Script proxy URLs
 // Each iframe src points to Apps Script which redirects to the real Maps embed URL
 // This keeps the API key off the HTML entirely
-// Maps — fetched from Apps Script so the API key never appears in this file
-fetch(APPS_SCRIPT_URL + '?action=maps')
-  .then(r => r.json())
-  .then(data => {
-    if (data.maps) {
-      data.maps.forEach((url, i) => {
-        document.getElementById('mf' + i).src = url;
-      });
-    }
-  })
-  .catch(err => console.warn('Map load failed:', err));
+// Maps — each iframe loads an Apps Script page that renders the map
+// The API key never leaves the server. The iframe origin is google.com so Maps allows it.
+(function(){
+  var base = APPS_SCRIPT_URL;
+  document.getElementById('mf0').src = base + '?action=map&id=0';
+  document.getElementById('mf1').src = base + '?action=map&id=1';
+  document.getElementById('mf2').src = base + '?action=map&id=2';
+})();
 
 // Cursor
 const $c = document.getElementById('cursor');
