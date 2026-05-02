@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Link Previews (Open Graph / Social Media) -->
 <title>White Rock | Study Abroad Fair 2026</title>
+<meta name="description" content="Connect with prestigious international institutions and explore scholarship opportunities at Nigeria's premier academic event.">
+<meta property="og:title" content="White Rock | Study Abroad Fair 2026">
+<meta property="og:description" content="Register now for the May 2026 tour in Ibadan, Lagos, and Benin City. Meet 16+ Global Universities!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com"> <!-- Replace with your actual URL -->
+<!-- flyer image (Thumbnail) -->
+<meta property="og:image" content="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w1200"> 
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -22,7 +35,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Archivo', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; cursor: none; }
 
-/* CURSOR */
+/* CURSOR - Hidden on mobile */
 .cursor { width: 14px; height: 14px; background: var(--red); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; mix-blend-mode: multiply; }
 .cursor-ring { width: 40px; height: 40px; border: 2px solid var(--navy); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.5; }
 
@@ -37,6 +50,9 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(26,43,107,0.12); }
 .nav-btn { background: var(--red) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 6px !important; font-weight: 700 !important; text-transform: uppercase; font-size: 12px !important; letter-spacing: 0.5px; }
 .nav-btn::after { display: none !important; }
 .nav-btn:hover { background: var(--red-dark) !important; }
+
+/* Mobile Nav Toggle */
+.mobile-toggle { display: none; background: none; border: none; color: var(--navy); cursor: pointer; padding: 5px; }
 
 /* HERO */
 .hero { margin-top: 68px; background: var(--navy); min-height: calc(100vh - 68px); position: relative; overflow: hidden; display: flex; align-items: center; }
@@ -53,7 +69,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(26,43,107,0.12); }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
 
-.hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 8vw, 110px); color: var(--white); line-height: 0.92; letter-spacing: 1px; margin-bottom: 24px; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+.hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(54px, 10vw, 110px); color: var(--white); line-height: 0.92; letter-spacing: 1px; margin-bottom: 24px; animation: upIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
 .hero h1 .hl { color: var(--red); display: block; }
 .hero h1 .ol { -webkit-text-stroke: 2px rgba(255,255,255,0.35); color: transparent; display: block; }
 @keyframes upIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
@@ -208,17 +224,43 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
 .reveal.visible { opacity: 1; transform: none; }
 .rd1 { transition-delay: 0.1s; } .rd2 { transition-delay: 0.2s; } .rd3 { transition-delay: 0.3s; }
 
-/* RESPONSIVE */
+/* RESPONSIVE FIXES */
 @media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
+  body { cursor: auto; } /* Enable default cursor on mobile */
+  .cursor, .cursor-ring { display: none; }
+  
+  nav { padding: 0 20px; }
+  .mobile-toggle { display: block; font-size: 24px; }
+  
+  .nav-links { 
+    position: fixed; top: 68px; left: 0; width: 100%; background: var(--white); 
+    flex-direction: column; padding: 30px; gap: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-120%); transition: transform 0.3s ease; display: flex;
+  }
+  .nav-links.active { transform: translateY(0); }
+
+  .hero-inner { grid-template-columns: 1fr; padding: 60px 20px; text-align: center; }
+  .hero-tag { margin: 0 auto 24px; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hstat { text-align: left; }
   .hero-right { display: none; }
+  
+  section { padding: 60px 20px; }
   .events-grid { grid-template-columns: 1fr; }
+  
   .map-layout { grid-template-columns: 1fr; }
-  .map-sidebar { display: flex; overflow-x: auto; }
-  .msi { min-width: 190px; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.07); }
+  .map-sidebar { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .map-sidebar::-webkit-scrollbar { display: none; }
+  .msi { min-width: 200px; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); }
+  .map-frames { height: 350px; }
+  
   .reg-layout { grid-template-columns: 1fr; gap: 40px; }
+  .reg-card { padding: 30px 20px; }
   .form-row { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+  
+  footer { padding: 40px 20px; flex-direction: column; text-align: center; }
+  .foot-links { justify-content: center; flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -230,13 +272,16 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
 <!-- NAV -->
 <nav id="main-nav">
   <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:42px;width:auto;display:block;">
-  <ul class="nav-links">
-    <li><a href="#schedule">Destinations</a></li>
-    <li><a href="#institutions">Universities</a></li>
-    <li><a href="#locations">Schedule</a></li>
-    <li><a href="#register">Scholarships</a></li>
-    <li><a href="#register">FAQ</a></li>
-    <li><a href="#register" class="nav-btn">Register Now</a></li>
+  
+  <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#schedule" onclick="toggleMenu()">Destinations</a></li>
+    <li><a href="#institutions" onclick="toggleMenu()">Universities</a></li>
+    <li><a href="#locations" onclick="toggleMenu()">Schedule</a></li>
+    <li><a href="#register" onclick="toggleMenu()">Scholarships</a></li>
+    <li><a href="#register" onclick="toggleMenu()">FAQ</a></li>
+    <li><a href="#register" class="nav-btn" onclick="toggleMenu()">Register Now</a></li>
   </ul>
 </nav>
 
@@ -295,7 +340,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
         <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">14</div></div><div class="etime">11:00 AM</div></div></div>
         <div class="ebody">
           <div class="ecity">Ibadan</div>
-          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Aganga Hall, International Conference Centre, UI, Ibadan</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Aganga Hall, ICC, UI, Ibadan</div>
           <a class="emapbtn" href="#locations" onclick="switchMap(0)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
         </div>
       </div>
@@ -303,7 +348,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
         <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">16</div></div><div class="etime">11:00 AM</div></div></div>
         <div class="ebody">
           <div class="ecity">Lagos</div>
-          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Chemline House, 7 Obasa Road, Off Oba Akran Avenue, Ikeja</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Chemline House, Ikeja, Lagos</div>
           <a class="emapbtn" href="#locations" onclick="switchMap(1)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
         </div>
       </div>
@@ -311,7 +356,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
         <div class="etop"><div class="edate-row"><div><div class="emon">May 2026</div><div class="eday">20</div></div><div class="etime">11:00 AM</div></div></div>
         <div class="ebody">
           <div class="ecity">Benin City</div>
-          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Constantial Hotel and Suites, 24-26 Airport Road, Opposite Benin Airport Exit Gate</div>
+          <div class="eaddr"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Constantial Hotel, Airport Rd, Benin</div>
           <a class="emapbtn" href="#locations" onclick="switchMap(2)"><svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4"/></svg> View on Map</a>
         </div>
       </div>
@@ -325,7 +370,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
     <div class="inst-hd reveal">
       <div class="sec-eye">Featured Institutions</div>
       <h2 class="sec-title">Meet the Schools</h2>
-      <p class="sec-sub">Meet representatives from world-class universities across Thailand, UK, Canada, Australia, Spain, and more.</p>
+      <p class="sec-sub">Representatives from world-class universities across Thailand, UK, Canada, Australia, Spain, and more.</p>
     </div>
     <div class="schools-grid reveal">
       <div class="school-card"><div class="sc-abbr">SIU</div><div class="sc-name">SIU</div><div class="sc-ctry">🇹🇭 Thailand</div></div>
@@ -334,7 +379,7 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
       <div class="school-card"><div class="sc-abbr">SC</div><div class="sc-name">Saskatchewan Colleges</div><div class="sc-ctry">🇨🇦 Canada</div></div>
       <div class="school-card"><div class="sc-abbr">DC</div><div class="sc-name">Durham College</div><div class="sc-ctry">🇨🇦 Canada</div></div>
       <div class="school-card"><div class="sc-abbr">WA</div><div class="sc-name">WAIFS Australia</div><div class="sc-ctry">🇦🇺 Australia</div></div>
-      <div class="school-card"><div class="sc-abbr">UP</div><div class="sc-name">UP Education</div><div class="sc-ctry">🇳🇿 New Zealand</div></div>
+      <div class="school-card"><div class="sc-abbr">UP</div><div class="sc-name">UP Education</div><div class="sc-ctry">🇳🇿 NZ</div></div>
       <div class="school-card"><div class="sc-abbr">ES</div><div class="sc-name">ENAI Spain</div><div class="sc-ctry">🇪🇸 Spain</div></div>
       <div class="school-card"><div class="sc-abbr">UC</div><div class="sc-name">Cumbria</div><div class="sc-ctry">🇬🇧 UK</div></div>
       <div class="school-card"><div class="sc-abbr">NU</div><div class="sc-name">NILAI University</div><div class="sc-ctry">🇲🇾 Malaysia</div></div>
@@ -351,180 +396,154 @@ footer { background: var(--navy-dark); padding: 36px 40px; display: flex; align-
     <div class="reveal">
       <div class="sec-eye">Location &amp; Directions</div>
       <h2 class="sec-title">Find Your Venue</h2>
-      <p class="sec-sub">Click a city below to see the exact venue location and plan your trip.</p>
     </div>
     <div class="map-layout reveal">
       <div class="map-sidebar">
         <div class="msi active" onclick="switchMap(0)" id="msi0"><div class="msi-date">May 14</div><div class="msi-city">Ibadan</div><div class="msi-venue">UI Conference Centre</div></div>
-        <div class="msi" onclick="switchMap(1)" id="msi1"><div class="msi-date">May 16</div><div class="msi-city">Lagos</div><div class="msi-venue">Chemline House, Ikeja</div></div>
-        <div class="msi" onclick="switchMap(2)" id="msi2"><div class="msi-date">May 20</div><div class="msi-city">Benin City</div><div class="msi-venue">Constantial Hotel</div></div>
+        <div class="msi" onclick="switchMap(1)" id="msi1"><div class="msi-date">May 16</div><div class="msi-city">Lagos</div><div class="msi-venue">Ikeja District</div></div>
+        <div class="msi" onclick="switchMap(2)" id="msi2"><div class="msi-date">May 20</div><div class="msi-city">Benin City</div><div class="msi-venue">Airport Road Area</div></div>
       </div>
-      <div class="map-frames">
-        <!-- Ibadan Map -->
-        <iframe class="map-frame active" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.273347514331!2d3.9168!3d7.4348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039ed45d270399d%3A0x6338562d4e797e88!2sInternational%20Conference%20Centre!5e0!3m2!1sen!2sng!4v1715000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
-        <!-- Lagos Map -->
-        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.077242137912!2d3.3392!3d6.6024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b93cd0c822e7d%3A0xe54e38e1f57b4f3b!2s7%20Obasa%20Rd%2C%20Ogba%2C%20Ikeja!5e0!3m2!1sen!2sng!4v1715000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
-        <!-- Benin Map -->
-        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4123!2d5.5942!3d6.3156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d3a579626e91%3A0x6396e9526e0388e4!2sConstantial%20Hotel!5e0!3m2!1sen!2sng!4v1715000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
+      <div class="map-frames" id="map-frames">
+        <iframe class="map-frame active" id="mf0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126602.57535625761!2d3.8050970138447404!3d7.428632503197955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039937656f5c3a1%3A0x8c1664861947b749!2sInternational%20conference%20center!5e0!3m2!1sen!2sng!4v1777364756189!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.36279400668!2d3.334513174993657!3d6.601757093392126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9187a60a3925%3A0xc3923d060e70226d!2sChemline%20House%20Training%20%26%20Event%20Centre!5e0!3m2!1sen!2sng!4v1777364835583!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map-frame" id="mf2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15862.12580663578!2d5.593144947670642!3d6.325099798629523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d235e8ba40eb%3A0x6f8e44ad70048901!2sConstantia%20Hotel!5e0!3m2!1sen!2sng!4v1777364996482!5m2!1sen!2sng" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
 </section>
 
 <!-- REGISTER -->
-<section id="register">
+<section id="register" style="background:var(--off-white)">
   <div class="container">
     <div class="reg-layout">
       <div class="reveal">
-        <div class="sec-eye">Registration</div>
-        <h2 class="sec-title">Secure Your Seat</h2>
-        <p class="sec-sub">Attendance is 100% free, but space is limited at each venue. Register now to receive your entry pass and exclusive scholarship updates.</p>
+        <div class="sec-eye">Free Registration</div>
+        <h2 class="sec-title">Secure Your Spot</h2>
         <ul class="reg-checks">
-          <li><div class="chk-ico">✓</div> One-on-one sessions with Admissions Officers</li>
-          <li><div class="chk-ico">✓</div> Free profile assessment and visa guidance</li>
-          <li><div class="chk-ico">✓</div> Information on partial & full scholarships</li>
-          <li><div class="chk-ico">✓</div> Application fee waivers for select schools</li>
+          <li><div class="chk-ico">✓</div> Meet representatives face-to-face</li>
+          <li><div class="chk-ico">✓</div> Get scholarship information</li>
+          <li><div class="chk-ico">✓</div> Instant WhatsApp confirmation</li>
         </ul>
       </div>
-      
-      <div class="reg-card reveal">
-        <div id="reg-form-container">
-          <div class="rc-title">Event Registration</div>
-          <p class="rc-sub">Fill the form below to register for the 2026 fair.</p>
-          <form id="fairForm">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" placeholder="e.g. Samuel Adekunle" required>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="samuel@example.com" required>
-              </div>
-              <div class="form-group">
-                <label>WhatsApp Number</label>
-                <div class="phone-wrap">
-                  <div class="phone-px">+234</div>
-                  <input type="tel" placeholder="803 000 0000" required>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Preferred Destination</label>
-                <select required>
-                  <option value="" disabled selected>Select Country</option>
-                  <option>UK</option>
-                  <option>Canada</option>
-                  <option>Australia</option>
-                  <option>Thailand / Malaysia</option>
-                  <option>Europe</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Event Location</label>
-                <select id="citySelect" required>
-                  <option value="" disabled selected>Select City</option>
-                  <option value="ibadan">Ibadan (May 14)</option>
-                  <option value="lagos">Lagos (May 16)</option>
-                  <option value="benin">Benin City (May 20)</option>
-                </select>
-              </div>
-            </div>
-            <button type="submit" class="submit-btn" id="submitBtn">
-              <span>Register Now</span>
-              <div class="spinner" id="btnSpinner"></div>
-            </button>
-            <div class="wa-hint"><span class="wa-dot-green">●</span> We'll send your invite via WhatsApp</div>
-          </form>
+      <div class="reg-card reveal rd1">
+        <div id="form-panel">
+          <div class="rc-title">Complete Registration</div>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" id="fname" placeholder="John" required></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" id="lname" placeholder="Doe" required></div>
+          </div>
+          <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="john@example.com" required></div>
+          <div class="form-group">
+            <label>WhatsApp Number *</label>
+            <div class="phone-wrap"><div class="phone-px">+234</div><input type="tel" id="phone" placeholder="080 1234 5678" required></div>
+          </div>
+          <div class="form-group">
+            <label>Preferred Venue *</label>
+            <select id="venue" required onchange="syncCards()">
+              <option value="">Select Destination</option>
+              <option value="Ibadan - May 14">Ibadan — May 14</option>
+              <option value="Lagos - May 16">Lagos — May 16</option>
+              <option value="Benin City - May 20">Benin City — May 20</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Study Level</label><select id="level"><option value="">Select...</option><option>Undergraduate</option><option>Postgraduate</option><option>Foundation</option></select></div>
+            <div class="form-group"><label>Top Destination</label><select id="dest"><option value="">Select...</option><option>UK</option><option>Canada</option><option>Australia</option><option>Malaysia</option></select></div>
+          </div>
+          <button class="submit-btn" id="sbtn" onclick="submitForm()">
+            <div class="spinner" id="spinner"></div>
+            <span id="btn-text">Complete Registration ➜</span>
+          </button>
         </div>
-
-        <div class="success-panel" id="successPanel">
+        <div class="success-panel" id="success-panel">
           <div class="succ-icon">✓</div>
-          <h3>Registration Successful!</h3>
-          <p>We've received your details. A confirmation message and your entry pass will be sent to your WhatsApp shortly.</p>
-          <a href="https://wa.me/2348000000000" class="wa-btn">Chat with an Advisor</a>
+          <h3>You're Registered!</h3>
+          <p>Confirmation message is heading your way on WhatsApp!</p>
+          <a id="wa-btn" href="#" class="wa-btn" target="_blank">Open WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:32px; filter: brightness(0) invert(1); opacity: 0.6;">
-  <ul class="foot-links">
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="#">Terms of Service</a></li>
-    <li><a href="#">Contact Us</a></li>
-  </ul>
-  <div class="foot-copy">© 2026 White Rock Study Abroad Fair. Developed with <span>❤</span> in Nigeria.</div>
+  <img src="https://drive.google.com/thumbnail?id=1QjC9QTWmCShWTkubVtUkD4UwwF95A4QF&sz=w400" alt="White Rock" style="height:36px;width:auto;display:block;">
+  <div class="foot-copy">© 2026 <span>White Rock</span> Academic System.</div>
 </footer>
 
 <script>
-  // CUSTOM CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  });
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbtpemuSwA6gGISAnmZh5KHtkAWsXesCCSiHdLlqTCBTaCbndKUrXeNsCJXOwmWVrI/exec';
+const ORG_WA = '2348000000000'; // Replace with your number
 
-  // NAV SCROLL EFFECT & REVEAL ANIMATIONS
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-    
-    document.querySelectorAll('.reveal').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.85) el.classList.add('visible');
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+
+// Cursor (Disabled for touch)
+const $c = document.getElementById('cursor');
+const $r = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+if (window.matchMedia("(min-width: 901px)").matches) {
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    (function loop(){$c.style.left=mx+'px';$c.style.top=my+'px';rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;$r.style.left=rx+'px';$r.style.top=ry+'px';requestAnimationFrame(loop);})();
+    document.querySelectorAll('a,button,.event-card,.school-card,.msi').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{$c.style.width='24px';$c.style.height='24px';$r.style.width='60px';$r.style.height='60px';});
+      el.addEventListener('mouseleave',()=>{$c.style.width='14px';$c.style.height='14px';$r.style.width='40px';$r.style.height='40px';});
     });
-  });
+}
 
-  // MAP SWITCHER
-  function switchMap(index) {
-    document.querySelectorAll('.msi').forEach(i => i.classList.remove('active'));
-    document.querySelectorAll('.map-frame').forEach(f => f.classList.remove('active'));
-    
-    const targetSideItem = document.getElementById('msi' + index);
-    if(targetSideItem) targetSideItem.classList.add('active');
-    
-    const targetMap = document.querySelectorAll('.map-frame')[index];
-    if(targetMap) targetMap.classList.add('active');
-  }
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('main-nav').classList.toggle('scrolled',scrollY>40));
 
-  // EVENT CARD PICKER
-  function pickEvent(city, el) {
-    document.querySelectorAll('.event-card').forEach(c => c.classList.remove('sel'));
-    el.classList.add('sel');
-    document.getElementById('citySelect').value = city;
-    document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
-  }
+// Reveal on scroll
+const ro = new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-  // FORM SUBMISSION
-  document.getElementById('fairForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const spinner = document.getElementById('btnSpinner');
-    const btnText = btn.querySelector('span');
-    
-    btn.disabled = true;
-    btnText.style.opacity = '0';
-    spinner.style.display = 'block';
+// Map
+function switchMap(i){
+  document.querySelectorAll('.map-frame').forEach((f,j)=>f.classList.toggle('active',j===i));
+  document.querySelectorAll('.msi').forEach((s,j)=>s.classList.toggle('active',j===i));
+}
 
-    // Simulate API Call delay
-    setTimeout(() => {
-      document.getElementById('reg-form-container').style.display = 'none';
-      document.getElementById('successPanel').style.display = 'block';
-    }, 1800);
-  });
+// Event card click
+function pickEvent(city, card){
+  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('sel'));
+  card.classList.add('sel');
+  const sel=document.getElementById('venue');
+  for(const o of sel.options) if(o.value.toLowerCase().includes(city)){sel.value=o.value;break;}
+  setTimeout(()=>document.getElementById('register').scrollIntoView({behavior:'smooth'}),200);
+}
+function syncCards(){
+  const v=document.getElementById('venue').value.toLowerCase();
+  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('sel'));
+  if(v.includes('ibadan')) document.querySelectorAll('.event-card')[0].classList.add('sel');
+  if(v.includes('lagos')) document.querySelectorAll('.event-card')[1].classList.add('sel');
+  if(v.includes('benin')) document.querySelectorAll('.event-card')[2].classList.add('sel');
+}
 
-  // Initial trigger for scroll animations on load
-  window.dispatchEvent(new Event('scroll'));
+// Submit
+async function submitForm(){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const venue=document.getElementById('venue').value;
+  const level=document.getElementById('level').value;
+  const dest=document.getElementById('dest').value;
+  if(!fname||!lname||!email||!phone||!venue){alert('Please fill in all required fields.');return;}
+  const btn=document.getElementById('sbtn');
+  btn.disabled=true;
+  document.getElementById('spinner').style.display='block';
+  document.getElementById('btn-text').textContent='Submitting...';
+  const payload={fname,lname,email,phone:'+234'+phone.replace(/\D/g,''),venue,level,dest,ts:new Date().toISOString()};
+  try{await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(e){console.warn(e);}
+  document.getElementById('form-panel').style.display='none';
+  document.getElementById('success-panel').style.display='block';
+  const vmap={'Ibadan - May 14':'ICC, UI, Ibadan','Lagos - May 16':'Chemline House, Lagos','Benin City - May 20':'Constantial Hotel, Benin'};
+  const msg=`Hello ${fname}! 🎓\n\nYour registration for the *White Rock Study Abroad Fair 2026* is confirmed!\n\n📍 *Venue:* ${vmap[venue]||venue}\n\nSee you there! 🌍`;
+  document.getElementById('wa-btn').href=`https://wa.me/${ORG_WA}?text=${encodeURIComponent(msg)}`;
+}
 </script>
-
 </body>
 </html>
